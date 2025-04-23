@@ -15,10 +15,23 @@
     <main>
       <section id="activities-container">
         <h3>Available Activities</h3>
-        <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
-        </div>
+        <table class="participants-table">
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Description</th>
+              <th>Schedule</th>
+              <th>Availability</th>
+              <th>Participants</th>
+            </tr>
+          </thead>
+          <tbody id="activities-list">
+            <!-- Activities will be dynamically loaded here -->
+            <tr>
+              <td colspan="5">Loading activities...</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section id="signup-container">
