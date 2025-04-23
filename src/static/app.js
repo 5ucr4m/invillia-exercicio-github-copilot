@@ -4,6 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
 
+  class ParticipantsList {
+    constructor(participants) {
+      this.participants = participants;
+    }
+
+    render() {
+      if (this.participants.length === 0) {
+        return '<p>No participants yet</p>';
+      }
+
+      return `
+        <ul class="participants-list">
+          ${this.participants.map(participant => `<li>${participant}</li>`).join('')}
+        </ul>
+      `;
+    }
+  }
+
   // Function to fetch activities from API
   async function fetchActivities() {
     try {
@@ -20,11 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spotsLeft = details.max_participants - details.participants.length;
 
+        const participantsList = new ParticipantsList(details.participants);
+
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          <p><strong>Participants:</strong></p>
+          ${participantsList.render()}
         `;
 
         activitiesList.appendChild(activityCard);
